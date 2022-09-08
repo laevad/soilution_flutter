@@ -1,11 +1,10 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../constant.dart';
 import '/screens/start_screen.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (context) => const LoginScreen(),));
     });
   }
@@ -43,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 3.2,
+                        height: MediaQuery.of(context).size.height / 4,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15),
                           child: Container(
@@ -75,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                         ) ,),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 3,
+                        height: MediaQuery.of(context).size.height / 2.4,
                         child: Container(
                           width: double.infinity,
                           decoration:  const BoxDecoration(
