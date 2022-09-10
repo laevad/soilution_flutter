@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:soilution_flutter/screens/tap_screen.dart';
 
 import '../constant.dart';
 
@@ -17,6 +18,8 @@ class LoginScreen extends StatelessWidget {
                 bodyColor: const Color(0xFF383838)),
             useMaterial3: true),
         child:   Scaffold(
+
+
           backgroundColor: const Color(0xFFffe36b),
           body: SafeArea(child: SingleChildScrollView(child:
           Column(
@@ -28,33 +31,39 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 3.2,
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/start_title.png",
-                              ), fit: BoxFit.cover)
+                    child: Hero(
+                      tag: 'title',
+                      child: Container(
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/start_title.png",
+                                ), fit: BoxFit.cover)
+                        ),
                       ),
                     ) ,),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 3.1,
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/start_mid.png",
-                              ), fit: BoxFit.cover)
+                    child: Hero(
+                      tag: 'mid',
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/start_mid.png",
+                                ), fit: BoxFit.cover)
+                        ),
                       ),
                     ) ,),
                   SizedBox(
-                      height: MediaQuery.of(context).size.height / 4,
+                      height: MediaQuery.of(context).size.height / 3,
                   child: Center(
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width /1.8,
                       height: 60,
                       child: ElevatedButton(onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TapScreen()));
                       },style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white, backgroundColor: Colors.green, // foreground
                       ),
