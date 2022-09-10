@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:soilution_flutter/screens/help_screen.dart';
 
 import '../constant.dart';
 
@@ -25,14 +26,19 @@ class TapScreen extends StatelessWidget {
             children: [
           Padding(
             padding: const EdgeInsets.only(top: 41,right: 34, left: 34),
-            child: ListTile(trailing: Container(
-              width: 40,
-              height: 40,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                        "assets/images/cq_0.png",
-                      ), fit: BoxFit.contain)
+            child: ListTile(trailing: GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HelpScreen()));
+              },
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(
+                          "assets/images/cq_0.png",
+                        ), fit: BoxFit.contain)
+                ),
               ),
             ),),
           ),

@@ -45,13 +45,16 @@ class _SplashScreenState extends State<SplashScreen> {
                         height: MediaQuery.of(context).size.height / 4,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                      "assets/images/soilution.png",
-                                    ), fit: BoxFit.cover)
+                          child: Hero(
+                            tag: 'title',
+                            child: Container(
+                              width: double.infinity,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        "assets/images/soilution.png",
+                                      ), fit: BoxFit.cover)
+                              ),
                             ),
                           ),
                         ) ,),
