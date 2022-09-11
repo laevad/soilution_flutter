@@ -11,14 +11,17 @@ class CustomHelpButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 41,right: 34, left: 34),
       child: ListTile(trailing: GestureDetector(
         onTap: ()=>onPressed!(),
-        child: Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/cq_0.png",
-                  ), fit: BoxFit.contain)
+        child: Hero(
+          tag: 'helpBtn',
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/cq_0.png",
+                    ), fit: BoxFit.contain)
+            ),
           ),
         ),
       ),),

@@ -29,7 +29,7 @@ class TapViewState extends ViewState<TapView, TapController> {
             child: SingleChildScrollView(
               child: Column(
             children: [
-               CustomHelpButton(onPressed: controller.onPressed,),
+               CustomHelpButton(onPressed: controller.onPressedHelp,),
               SizedBox(  height: MediaQuery.of(context).size.height /12 ,),
               const CustomBox(
                 height: 13,
@@ -38,10 +38,13 @@ class TapViewState extends ViewState<TapView, TapController> {
                 fit: BoxFit.fitWidth,
                 isCustomWidth: true,
               ),
-              const CustomBox(
-                height: 2.9,
-                hero: 'mid',
-                image: "assets/images/start_mid.png",
+              GestureDetector(
+                onTap: controller.onPressedCapture,
+                child: const CustomBox(
+                  height: 2.9,
+                  hero: 'mid',
+                  image: "assets/images/start_mid.png",
+                ),
               ),
             ]),
         )),);

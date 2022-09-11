@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterCleanArchitecture.debugModeOn();
+    WidgetsFlutterBinding.ensureInitialized();
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Soilution App',
