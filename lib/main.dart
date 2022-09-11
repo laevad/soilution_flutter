@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import '/screens/splash_screen.dart';
+import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:soilution_flutter/app/page/splash/splash_view.dart';
+
+import 'constant.dart';
 
 
 
@@ -11,11 +15,18 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-
+    FlutterCleanArchitecture.debugModeOn();
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Soilution App',
-      home: SplashScreen(),
+      theme: ThemeData(
+        colorScheme: Constant.lightColorScheme,
+        textTheme: GoogleFonts.openSansTextTheme().apply(
+            displayColor: const Color(0xFF383838),
+            bodyColor: const Color(0xFF383838)),
+        useMaterial3: true,
+      ),
+      home: const SplashView(),
     );
   }
 }
