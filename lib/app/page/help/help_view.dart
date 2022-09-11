@@ -37,12 +37,15 @@ class HelpViewState extends ViewState<HelpView, HelpController> {
            children: [
              SizedBox(
                height: MediaQuery.of(context).size.height / 3.1,
-               child: Container(
-                 decoration: const BoxDecoration(
-                     image: DecorationImage(
-                         image: AssetImage(
-                           "assets/images/how.png",
-                         ), fit: BoxFit.cover)
+               child: Hero(
+                 tag: 'mid',
+                 child: Container(
+                   decoration: const BoxDecoration(
+                       image: DecorationImage(
+                           image: AssetImage(
+                             "assets/images/how.png",
+                           ), fit: BoxFit.cover)
+                   ),
                  ),
                ) ,),
              SizedBox(
