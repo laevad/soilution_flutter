@@ -16,6 +16,7 @@ class CustomHelpBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(image!, height: 70 ),
         const SizedBox(width: 10,),

@@ -36,16 +36,13 @@ class HelpViewState extends ViewState<HelpView, HelpController> {
          child: Column(
            children: [
              SizedBox(
-               height: MediaQuery.of(context).size.height / 3.1,
-               child: Hero(
-                 tag: 'mid',
-                 child: Container(
-                   decoration: const BoxDecoration(
-                       image: DecorationImage(
-                           image: AssetImage(
-                             "assets/images/how.png",
-                           ), fit: BoxFit.cover)
-                   ),
+               height: MediaQuery.of(context).size.height / 3.30,
+               child: Container(
+                 decoration: const BoxDecoration(
+                     image: DecorationImage(
+                         image: AssetImage(
+                           "assets/images/how.png",
+                         ), fit: BoxFit.cover)
                  ),
                ) ,),
              SizedBox(
@@ -60,7 +57,7 @@ class HelpViewState extends ViewState<HelpView, HelpController> {
                      )),
                  child: SingleChildScrollView(
                    child: Padding(
-                     padding: const EdgeInsets.only(left: 35, top: 20, bottom: 20),
+                     padding: const EdgeInsets.only( top: 40),
                      child: Column(
                        children: const [
                          CustomHelpBox(),
