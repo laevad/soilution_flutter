@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Constant{
+class Constant {
   static ColorScheme lightColorScheme = const ColorScheme(
     brightness: Brightness.light,
     primary: Color(0xFFffe36b),

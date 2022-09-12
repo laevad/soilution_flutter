@@ -5,13 +5,11 @@ class CustomBodySizeBox extends StatelessWidget {
   final String? image;
   final BoxFit? fit;
   const CustomBodySizeBox(
-      {
-        Key? key,
-        this.height=4,
-        this.image="assets/images/dahon.png",
-        this.fit=BoxFit.contain
-      }
-      ) : super(key: key);
+      {Key? key,
+      this.height = 4,
+      this.image = "assets/images/dahon.png",
+      this.fit = BoxFit.contain})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +21,9 @@ class CustomBodySizeBox extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage(
                   image!,
-                ), fit: fit!)
-        ),
-      ) ,);
+                ),
+                fit: fit!)),
+      ),
+    );
   }
 }

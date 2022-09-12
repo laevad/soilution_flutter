@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:soilution_flutter/app/page/start/start_controller.dart';
 
 import '../../../constant.dart';
 import '../../widgets/global_custom/custom_box.dart';
 import '../../widgets/start/start_custom_button.dart';
-
+import 'start_controller.dart';
 
 class StartView extends View {
   const StartView({Key? key}) : super(key: key);
@@ -26,18 +25,22 @@ class StartViewState extends ViewState<StartView, StartController> {
           backgroundColor: Constant.lightColorScheme.primary,
           body: SafeArea(
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const CustomBox(),
-                    const CustomBox(
-                      height: 3.1,
-                      hero: 'mid',
-                      image: "assets/images/start_mid.png",
-                    ),
-                    StartCustomButton( onPressed: controller.onPressed,),
-                  ],
-                ),))
-          ,);
-      },);
+            child: Column(
+              children: [
+                const CustomBox(),
+                const CustomBox(
+                  height: 3.1,
+                  hero: 'mid',
+                  image: "assets/images/start_mid.png",
+                ),
+                StartCustomButton(
+                  onPressed: controller.onPressed,
+                ),
+              ],
+            ),
+          )),
+        );
+      },
+    );
   }
 }

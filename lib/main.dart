@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:soilution_flutter/app/page/splash/splash_view.dart';
 
+import 'app/page/splash/splash_view.dart';
 import 'constant.dart';
-
-
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterCleanArchitecture.debugModeOn();
     WidgetsFlutterBinding.ensureInitialized();
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Soilution App',
       theme: ThemeData(

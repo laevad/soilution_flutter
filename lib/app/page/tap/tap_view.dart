@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:soilution_flutter/app/page/tap/tap_controller.dart';
 
 import '../../../constant.dart';
 import '../../widgets/global_custom/custom_box.dart';
 import '../../widgets/tap/custom_help_button.dart';
-
+import 'tap_controller.dart';
 
 class TapView extends View {
   const TapView({Key? key}) : super(key: key);
@@ -17,20 +16,22 @@ class TapView extends View {
 class TapViewState extends ViewState<TapView, TapController> {
   TapViewState() : super(TapController());
 
-
   @override
   Widget get view {
     return ControlledWidgetBuilder<TapController>(
       builder: (context, controller) {
-      return Scaffold(
-        key: globalKey,
-        backgroundColor: Constant.lightColorScheme.primary,
-        body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-            children: [
-               CustomHelpButton(onPressed: controller.onPressedHelp,),
-              SizedBox(  height: MediaQuery.of(context).size.height /12 ,),
+        return Scaffold(
+          key: globalKey,
+          backgroundColor: Constant.lightColorScheme.primary,
+          body: SafeArea(
+              child: SingleChildScrollView(
+            child: Column(children: [
+              CustomHelpButton(
+                onPressed: controller.onPressedHelp,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 12,
+              ),
               const CustomBox(
                 height: 13,
                 hero: 'title',
@@ -47,7 +48,9 @@ class TapViewState extends ViewState<TapView, TapController> {
                 ),
               ),
             ]),
-        )),);
-    },);
+          )),
+        );
+      },
+    );
   }
 }

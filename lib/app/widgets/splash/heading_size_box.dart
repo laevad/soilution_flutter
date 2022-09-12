@@ -5,13 +5,11 @@ class CustomHeadingSizeBox extends StatelessWidget {
   final double? height;
   final String? image;
   const CustomHeadingSizeBox(
-      {
-        Key? key,
-        this.hero='title',
-        this.height = 4,
-        this.image="assets/images/soilution.png"
-      }
-      ) : super(key: key);
+      {Key? key,
+      this.hero = 'title',
+      this.height = 4,
+      this.image = "assets/images/soilution.png"})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +24,11 @@ class CustomHeadingSizeBox extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage(
                       image!,
-                    ), fit: BoxFit.cover)
-            ),
+                    ),
+                    fit: BoxFit.cover)),
           ),
         ),
-      ) ,);
+      ),
+    );
   }
 }
