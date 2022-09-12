@@ -16,7 +16,7 @@ class CaptureCustomButton extends StatelessWidget {
       decoration:  BoxDecoration(
           shape: BoxShape.circle,
           color: Constant.lightColorScheme.primary,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black26,
               offset: Offset(2,2),

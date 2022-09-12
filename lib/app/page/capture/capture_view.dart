@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:soilution_flutter/app/page/capture/capture_controller.dart';
 
 import '../../../constant.dart';
@@ -21,6 +26,7 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
   late CameraController cameraController;
   XFile? pictureFile;
   int direction = 0;
+  File? _image;
 
   @override
   void initState() {
@@ -46,6 +52,29 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
   void dispose() {
     cameraController.dispose();
     super.dispose();
+  }
+
+  Future _pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+      File? img = File(image.path);
+      img = await _cropImage(imageFile: img);
+      setState(() {
+        _image = img;
+        Navigator.of(context).pop();
+      });
+    } on PlatformException catch (e) {
+      print(e);
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future<File?> _cropImage({required File imageFile}) async {
+    CroppedFile? croppedImage =
+    await ImageCropper().cropImage(sourcePath: imageFile.path);
+    if (croppedImage == null) return null;
+    return File(croppedImage.path);
   }
 
 
@@ -90,15 +119,21 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children:  [
-                        const CaptureCustomButton(icon: Icons.image_outlined),
+                        GestureDetector(
+                            onTap:()=>_pickImage(ImageSource.gallery),
+                            child: const CaptureCustomButton(icon: Icons.image_outlined)),
                         GestureDetector(
                             onTap: (){
                               cameraController.takePicture().then(
-                                      (XFile? file) {
+                                      (XFile? file) async {
                                     if(mounted){
                                       if(file != null){
-                                        print("Picture save to ${file.path}"
-                                        );
+                                        File? img = File(file.path);
+                                        img = await _cropImage(imageFile: img);
+                                        setState(() {
+                                          _image = img;
+                                          Navigator.of(context).pop();
+                                        });
                                       }
                                     }
                                   });

@@ -8,7 +8,7 @@ class SplashController extends Controller{
 
   @override
   void initListeners() {
-    Future.delayed(const Duration(seconds: 1)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(
           getContext()).pushReplacement(
           CupertinoPageRoute(builder:
