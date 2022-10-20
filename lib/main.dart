@@ -25,7 +25,10 @@ class MyApp extends StatelessWidget {
             bodyColor: const Color(0xFF383838)),
         useMaterial3: true,
       ),
-      home: const SplashView(),
+      initialRoute:  SplashView.routeName,
+      routes: {
+        SplashView.routeName: (context) => const SplashView(),
+      },
     );
   }
 }

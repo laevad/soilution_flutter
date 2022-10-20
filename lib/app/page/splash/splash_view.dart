@@ -8,6 +8,7 @@ import '../../widgets/splash/heading_size_box.dart';
 import 'splash_controller.dart';
 
 class SplashView extends View {
+  static String routeName = '/splash-view';
   const SplashView({Key? key}) : super(key: key);
 
   @override
