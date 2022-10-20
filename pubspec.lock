@@ -497,6 +497,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.12"
+  tflite_maven:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: a8feedfb711eda9cc149a7f1a777a6934edf1cca
+      url: "https://github.com/NavidHosseini/tflite.git"
+    source: git
+    version: "1.1.5"
   typed_data:
     dependency: transitive
     description:

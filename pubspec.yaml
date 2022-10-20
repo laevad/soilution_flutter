@@ -43,6 +43,10 @@ dependencies:
   camera: ^0.10.0+1
   image_cropper: ^3.0.0
   flutter_launcher_icons: ^0.10.0
+  tflite_maven:
+    git:
+      url: https://github.com/NavidHosseini/tflite.git
+      ref: master
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +78,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+   - assets/
    - assets/images/
   #   - images/a_dot_ham.jpeg
 

@@ -7,6 +7,7 @@ import '../../widgets/tap/custom_help_button.dart';
 import 'tap_controller.dart';
 
 class TapView extends View {
+  static String routeName = '/tap-view';
   const TapView({Key? key}) : super(key: key);
 
   @override
