@@ -1,0 +1,2 @@
+0 silt
+1 clay
