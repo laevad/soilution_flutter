@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:soilution_flutter/app/page/result/result_controller.dart';
+import 'result_controller.dart';
 
 import '../../../constant.dart';
 import '../../widgets/global_custom/custom_result_box.dart';

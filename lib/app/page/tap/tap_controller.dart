@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import 'package:soilution_flutter/app/page/result/result_view.dart';
+import '../result/result_view.dart';
 
 import '../capture/capture_view.dart';
 import '../help/help_view.dart';
