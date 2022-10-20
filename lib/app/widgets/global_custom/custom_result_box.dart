@@ -22,13 +22,13 @@ class CustomResultBox extends StatelessWidget {
           BoxShadow(
             color: Constant.lightColorScheme.primary,
             blurRadius: 4,
-            offset: const Offset(3, 6), // Shadow position
+            offset: const Offset(2, 5), // Shadow position
           ),
         ],
         borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
-      width: MediaQuery.of(context).size.width / 1.5,
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      width: MediaQuery.of(context).size.width / 1.2,
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(
         children: [
           Text(
@@ -38,7 +38,7 @@ class CustomResultBox extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 11),
           Text(
             subTitle,
             style: GoogleFonts.prompt(

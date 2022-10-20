@@ -21,12 +21,6 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
   // TODO: implement view
   Widget get view => ControlledWidgetBuilder<ResultController>(
         builder: (context, controller) {
-          var _opacity = 1.0;
-          var _xOffset = 0.0;
-          var _yOffset = 0.0;
-          var _blurRadius = 0.0;
-          var _spreadRadius = 0.0;
-
           return Scaffold(
             backgroundColor: Colors.green,
             key: globalKey,
@@ -40,6 +34,7 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
               ),
             ),
             body: Stack(
+              alignment: Alignment.center,
               children: [
                 Positioned(
                   bottom: 0,
@@ -71,7 +66,7 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                             height: MediaQuery.of(context).size.height / 25),
                         const CustomResultBox(
                           title: 'Mineral Content',
-                          subTitle: 'High GoeThite',
+                          subTitle: 'High Goethite',
                         ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 30),
@@ -80,7 +75,7 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
                                 horizontal:
-                                    MediaQuery.of(context).size.width / 4),
+                                    MediaQuery.of(context).size.width / 5),
                             backgroundColor: Colors.green,
                           ),
                           child: Text(
@@ -91,8 +86,44 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                                 color: Colors.white),
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 5),
                       ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: MediaQuery.of(context).size.height / 35,
+                  child: Text(
+                    'Scanned Soil',
+                    style: GoogleFonts.prompt(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
+                  ),
+                ),
+                Positioned(
+                  width: 256,
+                  height: 150,
+                  top: MediaQuery.of(context).size.height / 14,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Constant.lightColorScheme.primary,
+                        width: 2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Constant.lightColorScheme.primary,
+                          blurRadius: 4,
+                          offset: const Offset(1, 3), // Shadow position
+                        ),
+                      ],
+                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      image: const DecorationImage(
+                          image: AssetImage(
+                            "assets/images/dummy.jpg",
+                          ),
+                          fit: BoxFit.cover),
                     ),
                   ),
                 ),
