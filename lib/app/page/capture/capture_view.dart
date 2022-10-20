@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../constant.dart';
 import '../../widgets/capture/custom_button.dart';
+import '../result/result_view.dart';
 import 'capture_controller.dart';
 
 class CaptureView extends View {
@@ -62,7 +63,7 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
       img = await _cropImage(imageFile: img);
       setState(() {
         _image = img;
-        Navigator.of(context).pop();
+        Navigator.pushNamed(context, ResultView.routeName);
       });
     } on PlatformException catch (e) {
       print(e);
@@ -138,7 +139,8 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                                     img = await _cropImage(imageFile: img);
                                     setState(() {
                                       _image = img;
-                                      Navigator.of(context).pop();
+                                      Navigator.pushNamed(
+                                          context, ResultView.routeName);
                                     });
                                   }
                                 }

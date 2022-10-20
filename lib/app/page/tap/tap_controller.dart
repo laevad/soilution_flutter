@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
-import '../result/result_view.dart';
 
 import '../capture/capture_view.dart';
 import '../help/help_view.dart';
@@ -16,13 +15,7 @@ class TapController extends Controller {
   }
 
   void onPressedCapture() async {
-    // await availableCameras().then((value) => Navigator.push(
-    //     getContext(),
-    //     MaterialPageRoute(
-    //         builder: (context) => CaptureView(
-    //               cameras: value,
-    //             ))));
-
-    Navigator.pushNamed(getContext(), ResultView.routeName);
+    await availableCameras().then((value) => Navigator.push(getContext(),
+        MaterialPageRoute(builder: (context) => CaptureView(cameras: value))));
   }
 }

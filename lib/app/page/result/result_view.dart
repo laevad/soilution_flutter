@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'result_controller.dart';
+import 'package:soilution_flutter/app/page/tap/tap_view.dart';
 
 import '../../../constant.dart';
 import '../../widgets/global_custom/custom_result_box.dart';
+import 'result_controller.dart';
 
 class ResultView extends View {
   static String routeName = '/resultView';
@@ -71,7 +72,8 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 30),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, TapView.routeName),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
                                 horizontal:

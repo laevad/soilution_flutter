@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'app/page/tap/tap_view.dart';
 
 import 'app/page/result/result_view.dart';
 import 'app/page/splash/splash_view.dart';
+import 'app/page/tap/tap_view.dart';
 import 'constant.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             bodyColor: const Color(0xFF383838)),
         useMaterial3: true,
       ),
-      initialRoute: TapView.routeName,
+      initialRoute: SplashView.routeName,
       routes: {
         SplashView.routeName: (context) => const SplashView(),
         ResultView.routeName: (context) => const ResultView(),
