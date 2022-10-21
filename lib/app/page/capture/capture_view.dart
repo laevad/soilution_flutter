@@ -159,10 +159,21 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                                   if (file != null) {
                                     File? img = File(file.path);
                                     img = await _cropImage(imageFile: img);
+                                    var output = await Tflite.runModelOnImage(
+                                        path: img!.path,
+                                        numResults: 2,
+                                        threshold: 0.5,
+                                        imageMean: 127.5,
+                                        imageStd: 127.5);
                                     setState(() {
                                       _image = img;
+
                                       Navigator.pushNamed(
-                                          context, ResultView.routeName);
+                                          context, ResultView.routeName,
+                                          arguments: {
+                                            'image': _image,
+                                            'output': output
+                                          });
                                     });
                                   }
                                 }
