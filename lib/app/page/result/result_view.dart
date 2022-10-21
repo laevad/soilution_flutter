@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:soilution_flutter/app/page/tap/tap_view.dart';
+import 'package:tflite_maven/tflite.dart';
 
 import '../../../constant.dart';
 import '../../widgets/global_custom/custom_result_box.dart';
@@ -17,6 +21,27 @@ class ResultView extends View {
 
 class ResultViewState extends ViewState<ResultView, ResultController> {
   ResultViewState() : super(ResultController());
+
+  File? _image;
+  List? _output;
+  final picker = ImagePicker();
+
+  classifyImage(File image) async {
+    var output = await Tflite.runModelOnImage(
+        path: image.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5);
+    setState(() {
+      _output = output;
+    });
+  }
+
+  Future loadModel() async {
+    await Tflite.loadModel(
+        model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
+  }
 
   @override
   // TODO: implement view
@@ -52,32 +77,36 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                     child: Column(
                       children: [
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 8),
+                          height: MediaQuery.of(context).size.height / 8,
+                        ),
                         const CustomResultBox(
                           title: 'Munshell Values',
                           subTitle: '10R 5/10',
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 25),
+                          height: MediaQuery.of(context).size.height / 25,
+                        ),
                         const CustomResultBox(
                           title: 'Soil Classification',
                           subTitle: 'Loam',
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 25),
+                          height: MediaQuery.of(context).size.height / 25,
+                        ),
                         const CustomResultBox(
                           title: 'Mineral Content',
                           subTitle: 'High Goethite',
                         ),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height / 30),
+                          height: MediaQuery.of(context).size.height / 30,
+                        ),
                         ElevatedButton(
                           onPressed: () => Navigator.pushReplacementNamed(
                               context, TapView.routeName),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    MediaQuery.of(context).size.width / 5),
+                              horizontal: MediaQuery.of(context).size.width / 5,
+                            ),
                             backgroundColor: Colors.green,
                           ),
                           child: Text(
