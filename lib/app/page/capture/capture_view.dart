@@ -7,6 +7,7 @@ import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite_maven/tflite.dart';
 
 import '../../../constant.dart';
 import '../../widgets/capture/custom_button.dart';
@@ -28,11 +29,13 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
   XFile? pictureFile;
   int direction = 0;
   File? _image;
+  List? _output;
 
   @override
   void initState() {
     super.initState();
     startCamera(0);
+    loadModel().then((value) => setState(() {}));
   }
 
   void startCamera(int direction) async {
@@ -53,6 +56,13 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
   void dispose() {
     cameraController.dispose();
     super.dispose();
+    Tflite.close();
+  }
+
+  loadModel() async {
+    await Tflite.loadModel(
+        model: 'assets/data/model_unquant.tflite',
+        labels: 'assets/data/labels.txt');
   }
 
   Future _pickImage(ImageSource source) async {
@@ -61,9 +71,17 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
       if (image == null) return;
       File? img = File(image.path);
       img = await _cropImage(imageFile: img);
+      var output = await Tflite.runModelOnImage(
+          path: image.path,
+          numResults: 2,
+          threshold: 0.5,
+          imageMean: 127.5,
+          imageStd: 127.5);
       setState(() {
         _image = img;
-        Navigator.pushNamed(context, ResultView.routeName);
+
+        Navigator.pushNamed(context, ResultView.routeName,
+            arguments: {'image': _image, 'output': output});
       });
     } on PlatformException catch (e) {
       print(e);
@@ -73,7 +91,9 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
 
   Future<File?> _cropImage({required File imageFile}) async {
     CroppedFile? croppedImage =
-        await ImageCropper().cropImage(sourcePath: imageFile.path);
+        await ImageCropper().cropImage(aspectRatioPresets: [
+      CropAspectRatioPreset.square,
+    ], sourcePath: imageFile.path);
     if (croppedImage == null) return null;
     return File(croppedImage.path);
   }
@@ -123,7 +143,9 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         GestureDetector(
-                          onTap: () => _pickImage(ImageSource.gallery),
+                          onTap: () {
+                            _pickImage(ImageSource.gallery);
+                          },
                           child: const CaptureCustomButton(
                             icon: Icons.image_outlined,
                           ),

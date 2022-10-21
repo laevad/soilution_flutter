@@ -1,11 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:soilution_flutter/app/page/tap/tap_view.dart';
-import 'package:tflite_maven/tflite.dart';
 
 import '../../../constant.dart';
 import '../../widgets/global_custom/custom_result_box.dart';
@@ -22,31 +17,15 @@ class ResultView extends View {
 class ResultViewState extends ViewState<ResultView, ResultController> {
   ResultViewState() : super(ResultController());
 
-  File? _image;
-  List? _output;
-  final picker = ImagePicker();
-
-  classifyImage(File image) async {
-    var output = await Tflite.runModelOnImage(
-        path: image.path,
-        numResults: 2,
-        threshold: 0.5,
-        imageMean: 127.5,
-        imageStd: 127.5);
-    setState(() {
-      _output = output;
-    });
-  }
-
-  Future loadModel() async {
-    await Tflite.loadModel(
-        model: 'assets/model_unquant.tflite', labels: 'assets/labels.txt');
-  }
-
   @override
   // TODO: implement view
   Widget get view => ControlledWidgetBuilder<ResultController>(
         builder: (context, controller) {
+          final arguments = (ModalRoute.of(context)?.settings.arguments ??
+              <String, dynamic>{}) as Map;
+          final image = arguments['image'];
+          final output = arguments['output'];
+
           return Scaffold(
             backgroundColor: Colors.green,
             key: globalKey,
@@ -86,9 +65,10 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
                         ),
-                        const CustomResultBox(
+                        CustomResultBox(
                           title: 'Soil Classification',
-                          subTitle: 'Loam',
+                          subTitle:
+                              output != null ? "${output![0]['label']}" : 'N/A',
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
@@ -101,8 +81,7 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                           height: MediaQuery.of(context).size.height / 30,
                         ),
                         ElevatedButton(
-                          onPressed: () => Navigator.pushReplacementNamed(
-                              context, TapView.routeName),
+                          onPressed: () => Navigator.pop(context),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
                               horizontal: MediaQuery.of(context).size.width / 5,
@@ -150,11 +129,10 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                         ),
                       ],
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      image: const DecorationImage(
-                          image: AssetImage(
-                            "assets/images/dummy.jpg",
-                          ),
-                          fit: BoxFit.cover),
+                    ),
+                    child: Image.file(
+                      image!,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
