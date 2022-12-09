@@ -161,7 +161,7 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                                     img = await _cropImage(imageFile: img);
                                     var output = await Tflite.runModelOnImage(
                                         path: img!.path,
-                                        numResults: 2,
+                                        numResults: 4,
                                         threshold: 0.5,
                                         imageMean: 127.5,
                                         imageStd: 127.5);
@@ -180,7 +180,9 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                               });
                             },
                             child: const CaptureCustomButton(
-                                icon: Icons.camera_outlined)),
+                                icon: Icons.camera_outlined
+                            ),
+                        ),
                         GestureDetector(
                             onTap: () {
                               setState(() {
@@ -189,7 +191,9 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                               });
                             },
                             child: const CaptureCustomButton(
-                                icon: Icons.flip_camera_ios_outlined)),
+                                icon: Icons.flip_camera_ios_outlined
+                            ),
+                        ),
                       ]),
                 )
               ],
