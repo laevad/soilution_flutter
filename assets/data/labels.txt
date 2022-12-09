@@ -1,4 +1,4 @@
-loam
-sand
-silt
-clay
+CLAY
+LOAM
+SAND
+SILT
