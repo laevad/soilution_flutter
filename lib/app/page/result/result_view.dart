@@ -25,6 +25,7 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
               <String, dynamic>{}) as Map;
           final image = arguments['image'];
           final output = arguments['output'];
+          final munsell = arguments['munsell'];
 
           return Scaffold(
             backgroundColor: Colors.green,
@@ -58,9 +59,9 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 8,
                         ),
-                        const CustomResultBox(
-                          title: 'Munshell Values',
-                          subTitle: '10R 5/10',
+                         CustomResultBox(
+                          title: 'Munsell Values',
+                          subTitle: munsell,
                         ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
@@ -73,10 +74,10 @@ class ResultViewState extends ViewState<ResultView, ResultController> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
                         ),
-                        const CustomResultBox(
-                          title: 'Mineral Content',
-                          subTitle: 'High Goethite',
-                        ),
+                        // const CustomResultBox(
+                        //   title: 'Mineral Content',
+                        //   subTitle: 'High Goethite',
+                        // ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 30,
                         ),

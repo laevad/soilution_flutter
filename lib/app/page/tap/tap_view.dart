@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 
 import '../../../constant.dart';
+import '../../../api.dart';
 import '../../widgets/global_custom/custom_box.dart';
 import '../../widgets/tap/custom_help_button.dart';
 import 'tap_controller.dart';

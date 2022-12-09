@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:tflite_maven/tflite.dart';
 
 import '../../../constant.dart';
+import '../../../api.dart';
 import '../../widgets/capture/custom_button.dart';
 import '../result/result_view.dart';
 import 'capture_controller.dart';
@@ -77,10 +78,16 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
           threshold: 0.5,
           imageMean: 127.5,
           imageStd: 127.5);
+      Map<String, String> body = {
+        'clusters': "1",};
+      var munsell = await Api().getSoil(body,image.path);
+
       setState(() {
         _image = img;
+
+
         Navigator.pushNamed(context, ResultView.routeName,
-            arguments: {'image': _image, 'output': output});
+            arguments: {'image': _image, 'output': output, 'munsell': munsell});
       });
     } on PlatformException catch (e) {
       print("================*********=========================");

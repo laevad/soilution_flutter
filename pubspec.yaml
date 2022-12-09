@@ -47,6 +47,7 @@ dependencies:
     git:
       url: https://github.com/NavidHosseini/tflite.git
       ref: master
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
