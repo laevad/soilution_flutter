@@ -61,7 +61,7 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
 
   loadModel() async {
     await Tflite.loadModel(
-        model: 'assets/data/model_unquant.tflite',
+        model: 'assets/data/model.tflite',
         labels: 'assets/data/labels.txt');
   }
 
@@ -79,11 +79,11 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
           imageStd: 127.5);
       setState(() {
         _image = img;
-
         Navigator.pushNamed(context, ResultView.routeName,
             arguments: {'image': _image, 'output': output});
       });
     } on PlatformException catch (e) {
+      print("================*********=========================");
       print(e);
       Navigator.of(context).pop();
     }
