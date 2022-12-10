@@ -15,14 +15,17 @@ class CustomBodySizeBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height / height!,
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  image!,
-                ),
-                fit: fit!)),
+      child: Hero(
+        tag: 'mid',
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                    image!,
+                  ),
+                  fit: fit!)),
+        ),
       ),
     );
   }

@@ -29,7 +29,7 @@ class StartViewState extends ViewState<StartView, StartController> {
               children: [
                 const CustomBox(),
                 const CustomBox(
-                  height: 2.5,
+                  height: 2.8,
                   hero: 'mid',
                   fit: BoxFit.fitHeight,
                   image: "assets/images/logo1.png",
