@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite_maven/tflite.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../constant.dart';
 import '../../../api.dart';
@@ -36,7 +37,9 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
   void initState() {
     super.initState();
     startCamera(0);
-    loadModel().then((value) => setState(() {}));
+    loadModel().then((value) => setState(() {
+
+    }));
   }
 
   void startCamera(int direction) async {
@@ -68,30 +71,41 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
 
   Future _pickImage(ImageSource source) async {
     try {
+      EasyLoading.show(status: 'loading...');
+
       final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
+      if (image == null){
+        EasyLoading.dismiss();
+
+        return;
+      }
+      EasyLoading.show(status: 'loading...');
       File? img = File(image.path);
       img = await _cropImage(imageFile: img);
-      var output = await Tflite.runModelOnImage(
-          path: image.path,
-          numResults: 2,
-          threshold: 0.5,
-          imageMean: 127.5,
-          imageStd: 127.5);
-      Map<String, String> body = {
-        'clusters': "1",};
-      var munsell = await Api().getSoil(body,image.path);
+      if(img!=null){
+        var output = await Tflite.runModelOnImage(
+            path: image.path,
+            numResults: 2,
+            threshold: 0.5,
+            imageMean: 127.5,
+            imageStd: 127.5);
+        Map<String, String> body = {
+          'clusters': "1",};
+        var munsell = await Api().getSoil(body,image.path);
 
-      setState(() {
-        _image = img;
+        setState(() {
+          _image = img;
+          EasyLoading.dismiss();
+          Navigator.pushNamed(context, ResultView.routeName,
+              arguments: {'image': _image, 'output': output, 'munsell': munsell});
+        });
+      }
+      EasyLoading.dismiss();
 
-
-        Navigator.pushNamed(context, ResultView.routeName,
-            arguments: {'image': _image, 'output': output, 'munsell': munsell});
-      });
     } on PlatformException catch (e) {
       print("================*********=========================");
       print(e);
+      EasyLoading.dismiss();
       Navigator.of(context).pop();
     }
   }
@@ -166,22 +180,25 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
                                   if (file != null) {
                                     File? img = File(file.path);
                                     img = await _cropImage(imageFile: img);
-                                    var output = await Tflite.runModelOnImage(
-                                        path: img!.path,
-                                        numResults: 4,
-                                        threshold: 0.5,
-                                        imageMean: 127.5,
-                                        imageStd: 127.5);
-                                    setState(() {
-                                      _image = img;
+                                    if(img!=null){
+                                      var output = await Tflite.runModelOnImage(
+                                          path: file.path,
+                                          numResults: 2,
+                                          threshold: 0.5,
+                                          imageMean: 127.5,
+                                          imageStd: 127.5);
+                                      Map<String, String> body = {
+                                        'clusters': "1",};
+                                      EasyLoading.show(status: 'loading...');
+                                      var munsell = await Api().getSoil(body,file.path);
 
-                                      Navigator.pushNamed(
-                                          context, ResultView.routeName,
-                                          arguments: {
-                                            'image': _image,
-                                            'output': output
-                                          });
-                                    });
+                                      setState(() {
+                                        _image = img;
+                                        EasyLoading.dismiss();
+                                        Navigator.pushNamed(context, ResultView.routeName,
+                                            arguments: {'image': _image, 'output': output, 'munsell': munsell});
+                                      });
+                                    }
                                   }
                                 }
                               });

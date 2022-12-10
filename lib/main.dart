@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'app/page/result/result_view.dart';
 import 'app/page/splash/splash_view.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     WidgetsFlutterBinding.ensureInitialized();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      builder: EasyLoading.init(),
       title: 'Soilution App',
       theme: ThemeData(
         colorScheme: Constant.lightColorScheme,
