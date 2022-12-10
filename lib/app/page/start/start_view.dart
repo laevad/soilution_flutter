@@ -29,12 +29,16 @@ class StartViewState extends ViewState<StartView, StartController> {
               children: [
                 const CustomBox(),
                 const CustomBox(
-                  height: 3.1,
+                  height: 2.5,
                   hero: 'mid',
-                  image: "assets/images/start_mid.png",
+                  fit: BoxFit.fitHeight,
+                  image: "assets/images/logo1.png",
                 ),
-                StartCustomButton(
-                  onPressed: controller.onPressed,
+                Hero(
+                  tag: 'loading',
+                  child: StartCustomButton(
+                    onPressed: controller.onPressed,
+                  ),
                 ),
               ],
             ),

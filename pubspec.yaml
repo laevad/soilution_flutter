@@ -1,5 +1,5 @@
 name: soilution_flutter
-description: A new Flutter project.
+description: A new Soilution project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -62,7 +62,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter_icons:
-  image_path: "assets/images/1024.png"
+  image_path: "assets/images/1024_1.png"
   android: true
   ios: true
   remove_alpha_ios: true

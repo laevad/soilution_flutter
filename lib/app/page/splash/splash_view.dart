@@ -30,13 +30,8 @@ class SplashViewState extends ViewState<SplashView, SplashController> {
             Column(
               children: const [
                 CustomHeadingSizeBox(),
-                CustomLoadingSizeBox(),
                 CustomBodySizeBox(),
-                CustomBodySizeBox(
-                  height: 2.4,
-                  image: "assets/images/home_1.png",
-                  fit: BoxFit.cover,
-                ),
+                Hero(tag: 'loading',child: CustomLoadingSizeBox(),),
               ],
             ),
           ],

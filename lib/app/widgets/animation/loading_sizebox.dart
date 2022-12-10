@@ -6,7 +6,7 @@ class CustomLoadingSizeBox extends StatelessWidget {
   final Color? color;
   final double? size;
   const CustomLoadingSizeBox(
-      {Key? key, this.height = 10, this.color = Colors.green, this.size = 85})
+      {Key? key, this.height = 4.5, this.color = Colors.green, this.size = 65})
       : super(key: key);
 
   @override

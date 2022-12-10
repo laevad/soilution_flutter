@@ -7,7 +7,7 @@ class CustomHeadingSizeBox extends StatelessWidget {
   const CustomHeadingSizeBox(
       {Key? key,
       this.hero = 'title',
-      this.height = 4,
+      this.height = 3.5,
       this.image = "assets/images/soilution.png"})
       : super(key: key);
 

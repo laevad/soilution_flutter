@@ -44,9 +44,10 @@ class TapViewState extends ViewState<TapView, TapController> {
               GestureDetector(
                 onTap: controller.onPressedCapture,
                 child: const CustomBox(
-                  height: 2.9,
+                  height: 2.5,
                   hero: 'mid',
-                  image: "assets/images/start_mid.png",
+                  fit: BoxFit.fitHeight,
+                  image: "assets/images/logo1.png",
                 ),
               ),
             ]),
