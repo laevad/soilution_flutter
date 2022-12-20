@@ -36,7 +36,7 @@ class TapViewState extends ViewState<TapView, TapController> {
               ),
               const CustomBox(
                 height: 13,
-                hero: 'title',
+                hero: '',
                 image: "assets/images/tap.png",
                 fit: BoxFit.fitWidth,
                 isCustomWidth: true,

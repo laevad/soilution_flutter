@@ -82,24 +82,27 @@ class CaptureViewState extends ViewState<CaptureView, CaptureController> {
       EasyLoading.show(status: 'loading...');
       File? img = File(image.path);
       img = await _cropImage(imageFile: img);
-      if(img!=null){
-        var output = await Tflite.runModelOnImage(
-            path: image.path,
-            numResults: 2,
-            threshold: 0.5,
-            imageMean: 127.5,
-            imageStd: 127.5);
-        Map<String, String> body = {
-          'clusters': "1",};
-        var munsell = await Api().getSoil(body,image.path);
 
-        setState(() {
-          _image = img;
-          EasyLoading.dismiss();
-          Navigator.pushNamed(context, ResultView.routeName,
-              arguments: {'image': _image, 'output': output, 'munsell': munsell});
-        });
-      }
+      var output = await Tflite.runModelOnImage(
+          path: image.path,
+          numResults: 2,
+          threshold: 0.5,
+          imageMean: 127.5,
+          imageStd: 127.5);
+      print("**********************************************************************");
+      Map<String, String> body = {
+        'clusters': "1",};
+      var munsell = await Api().getSoil(body,image.path);
+
+      setState(() {
+        _image = img;
+        EasyLoading.dismiss();
+        Navigator.pushNamed(context, ResultView.routeName,
+            arguments: {'image': _image, 'output': output, 'munsell': munsell});
+      });
+      // if(img!=null){
+      //
+      // }
       EasyLoading.dismiss();
 
     } on PlatformException catch (e) {
