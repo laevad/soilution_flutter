@@ -1,0 +1,4 @@
+CLAY
+LOAM
+SAND
+SILT
