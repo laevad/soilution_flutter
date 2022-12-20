@@ -18,7 +18,7 @@ void configLoading() {
     ..indicatorSize = 45.0
     ..radius = 10.0
     ..progressColor = Colors.green
-    ..backgroundColor = Colors.white
+    ..backgroundColor = Colors.yellow
     ..indicatorColor = Colors.green
     ..textColor = Colors.white
     ..textStyle =
