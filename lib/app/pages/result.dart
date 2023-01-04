@@ -56,7 +56,7 @@ class _ResultState extends State<Result> {
     loading = true;
     output = (await Tflite.runModelOnImage(
         path: args['image_path'],
-        numResults: 2,
+        numResults: 4,
         threshold: 0.5,
         imageMean: 127.5,
         imageStd: 127.5))!;
@@ -118,7 +118,7 @@ class _ResultState extends State<Result> {
         baseColor: Colors.yellow[300]!,
         highlightColor: Colors.green[300]!,
         child: Container(
-          height: MediaQuery.of(context).size.height / 9,
+          height: MediaQuery.of(context).size.height / 8.1,
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.green,
@@ -189,7 +189,7 @@ class _ResultState extends State<Result> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 18,
+                    height: MediaQuery.of(context).size.height / 10,
                   ),
                   loading
                       ? getShimmerDetailLoading()
@@ -198,7 +198,7 @@ class _ResultState extends State<Result> {
                           subTitle: munsell,
                         ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 25,
+                    height: MediaQuery.of(context).size.height / 30,
                   ),
                   loading
                       ? getShimmerDetailLoading()
@@ -217,7 +217,7 @@ class _ResultState extends State<Result> {
                           subTitle: 'High Goethite',
                         ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height / 20,
+                    height: MediaQuery.of(context).size.height / 25,
                   ),
                   loading
                       ? getShimmerBoxLoading(

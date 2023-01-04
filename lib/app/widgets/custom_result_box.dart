@@ -38,7 +38,7 @@ class CustomResultBox extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(height: 11),
+          const SizedBox(height: 10),
           Text(
             subTitle,
             style: GoogleFonts.prompt(

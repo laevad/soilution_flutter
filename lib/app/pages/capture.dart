@@ -179,6 +179,20 @@ class _CaptureState extends State<Capture> {
                             if (file != null) {
                               File? img = File(file.path);
                               img = await _cropImage(imageFile: img);
+
+                              if (img == null) {
+                                EasyLoading.dismiss();
+                                return;
+                              } else {
+                                setState(() {
+                                  EasyLoading.dismiss();
+                                  Navigator.pushNamed(context, Result.routeName,
+                                      arguments: {
+                                        'image_path': file.path,
+                                        'image': img
+                                      });
+                                });
+                              }
                             }
                           }
                         });
