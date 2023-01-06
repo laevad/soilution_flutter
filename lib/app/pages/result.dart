@@ -23,8 +23,11 @@ class _ResultState extends State<Result> {
   var loading = false;
   late var output = [];
   late var munsell = "";
+  late var mineral = "";
   late var args;
   File? _image;
+
+  String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
   loadModel() async {
     await Tflite.loadModel(
@@ -61,19 +64,18 @@ class _ResultState extends State<Result> {
         imageMean: 127.5,
         imageStd: 127.5))!;
 
-    Map<String, String> body = {
-      'clusters': "1",
-    };
-    var m = await Api().getSoil(body, args['image_path']);
+    var data = await Api().getSoil(args['image_path']);
+    var munsellData = data['result'][0];
+    var mineralData = data['mineral'];
 
     _image = args['image'];
     print(
         "*********************************************************************"
         "*");
-    print(output);
-    print(m);
-    munsell = m;
+    mineral = mineralData;
+    munsell = munsellData;
     loading = false;
+
     EasyLoading.dismiss();
     setState(() {});
   }
@@ -212,9 +214,9 @@ class _ResultState extends State<Result> {
                   ),
                   loading
                       ? getShimmerDetailLoading()
-                      : const CustomResultBox(
+                      : CustomResultBox(
                           title: 'Mineral Content',
-                          subTitle: 'High Goethite',
+                          subTitle: mineral.toUpperCase(),
                         ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 25,
