@@ -6,9 +6,9 @@ class CustomBodySizeBox extends StatelessWidget {
   final BoxFit? fit;
   const CustomBodySizeBox(
       {Key? key,
-        this.height = 2.5,
-        this.image = "assets/images/logo1.png",
-        this.fit = BoxFit.contain})
+      this.height = 2.5,
+      this.image = "assets/images/logo3.png",
+      this.fit = BoxFit.contain})
       : super(key: key);
 
   @override

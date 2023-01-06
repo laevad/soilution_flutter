@@ -15,33 +15,31 @@ class GetStart extends StatefulWidget {
 class _GetStartState extends State<GetStart> {
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       backgroundColor: Constant.lightColorScheme.primary,
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const CustomBox(),
-                const CustomBox(
-                  height: 2.8,
-                  hero: 'mid',
-                  fit: BoxFit.fitHeight,
-                  image: "assets/images/logo1.png",
-                ),
-                Hero(
-                  tag: 'loading',
-                  child: CustomStartButton(
-                    onPressed: (){
-                      Navigator.pushReplacement(
-                          context, MaterialPageRoute(
-                          builder: (context) => const Tap())
-                      );
-                    },
-                  ),
-                ),
-              ],
+        child: Column(
+          children: [
+            const CustomBox(),
+            const CustomBox(
+              height: 2.8,
+              hero: 'mid',
+              fit: BoxFit.fitHeight,
+              image: "assets/images/logo3.png",
             ),
-          )),
+            Hero(
+              tag: 'loading',
+              child: CustomStartButton(
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => const Tap()));
+                },
+              ),
+            ),
+          ],
+        ),
+      )),
     );
   }
 }
