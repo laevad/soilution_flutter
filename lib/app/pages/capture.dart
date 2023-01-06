@@ -78,7 +78,7 @@ class _CaptureState extends State<Capture> {
         setState(() {
           EasyLoading.dismiss();
           Navigator.pushNamed(context, Result.routeName,
-              arguments: {'image_path': image.path, 'image': img});
+              arguments: {'image_path': img?.path, 'image': img});
         });
       }
 

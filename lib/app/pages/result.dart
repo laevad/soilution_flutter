@@ -65,8 +65,8 @@ class _ResultState extends State<Result> {
         imageStd: 127.5))!;
 
     var data = await Api().getSoil(args['image_path']);
-    var munsellData = data['result'][0];
-    var mineralData = data['mineral'];
+    var munsellData = await data['result'][0];
+    var mineralData = await data['mineral'];
 
     _image = args['image'];
     print(
